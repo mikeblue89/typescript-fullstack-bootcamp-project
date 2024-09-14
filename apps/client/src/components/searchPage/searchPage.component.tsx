@@ -50,7 +50,7 @@ const SearchPage = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Product Search</h1>
+      <h1 className="text-4xl font-bold mb-4">Mike's Store</h1>
 
       <div className="mb-4 flex gap-4">
         <input
