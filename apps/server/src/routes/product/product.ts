@@ -5,9 +5,28 @@ export function productRouter(app: Express): void {
   const router = express.Router();
   app.use('/api/products', router);
 
-  router.get('/', async (_req, res, next) => {
+  router.get('/', async (req, res, next) => {
+    const { search = '', collection = '', sort = 'price_asc' } = req.query;
+  
     try {
-      const products = await prisma.product.findMany({
+      const filters: any = {
+        where: {
+          AND: [
+            {
+              name: {
+                contains: search as string,
+                mode: 'insensitive',
+              },
+            },
+            {
+              ProductCollection: {
+                some: {
+                  collectionId: collection ? parseInt(collection as string, 10) : undefined,
+                },
+              },
+            },
+          ],
+        },
         include: {
           variants: true,
           ProductCollection: {
@@ -16,16 +35,25 @@ export function productRouter(app: Express): void {
             },
           },
         },
+      };
+  
+      const orderBy = sort === 'price_desc'
+        ? { price: 'desc' }
+        : { price: 'asc' };
+  
+      const products = await prisma.product.findMany({
+        ...filters,
+        orderBy: orderBy,
       });
-
+  
       const formattedProducts = products.map(product => ({
         ...product,
         collections: product.ProductCollection.map(pc => pc.collection),
       }));
-
+  
       res.status(200).json({ statusCode: 200, data: formattedProducts });
     } catch (error) {
-      next({ statusCode: 500, message: 'Error fetching products ' });
+      next({ statusCode: 500, message: 'Error fetching products' });
     }
   });
 
