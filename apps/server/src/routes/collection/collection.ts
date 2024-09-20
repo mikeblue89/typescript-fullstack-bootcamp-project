@@ -3,7 +3,7 @@ import { prisma } from '../../lib/prismaClient';
 
 export function collectionRouter(app: Express): void {
   const router = express.Router();
-  app.use('/api/colection', router);
+  app.use('/api/collection', router);
 
   router.get('/', async (req, res, next) => {
     try {
