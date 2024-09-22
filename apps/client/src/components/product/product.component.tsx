@@ -1,6 +1,11 @@
 import { Link } from 'react-router-dom';
+import { Product } from '../../interfaces/product.interface';
 
-const ProductCard = ({ product }) => {
+interface ProductCardProps {
+    product: Product;
+}
+
+const ProductCard = ({ product }: ProductCardProps) => {
     return (
         <Link to={`/products/${product.id}`} className="border border-gray-200 p-4 rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col h-full bg-white">
             <div className="border p-4 rounded shadow-md hover:bg-gray-100 cursor-pointer flex flex-col h-full">

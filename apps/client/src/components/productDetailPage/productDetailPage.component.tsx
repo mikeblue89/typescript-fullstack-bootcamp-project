@@ -61,7 +61,7 @@ const ProductDetailPage = () => {
                 <div className="md:w-1/2">
                     <p className="text-lg mb-4">{product.description}</p>
                     <p className="text-xl font-bold text-black-600 mb-4">${product.price.toFixed(2)}</p>
-                    {product.variants.length > 0 && (
+                    {product.variants && product.variants.length > 0 && (
                         <div>
                             <h2 className="text-lg font-semibold mb-2">Select a Variant</h2>
                             <select

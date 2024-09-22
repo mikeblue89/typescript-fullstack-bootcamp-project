@@ -142,7 +142,7 @@ export function productRouter(app: Express): void {
       next({
         statusCode: 500,
         message: 'Failed to attach collection to product',
-        error: error.message,
+        error: error,
       });
     }
   });

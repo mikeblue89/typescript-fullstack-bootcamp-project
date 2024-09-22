@@ -4,6 +4,7 @@ export interface Product {
   description?: string;
   image?: string;
   price: number;
+  variants?: Variant [];
 }
 
 export interface Variant {
@@ -12,5 +13,6 @@ export interface Variant {
   description?: string;
   image?: string;
   price: number;
+  stockQuantity: number;
 }
 
