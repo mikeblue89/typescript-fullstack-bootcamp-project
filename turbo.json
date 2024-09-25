@@ -31,6 +31,8 @@
       "dependsOn": ["build"],
       "cache": false,
       "persistent": true
-    }
+    },
+    "e2e:run": {},
+    "e2e:report": {}
   }
 }

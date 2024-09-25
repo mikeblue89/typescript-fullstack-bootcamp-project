@@ -75,8 +75,9 @@ const SearchPage = () => {
         <select
           value={sortOrder}
           onChange={(e) => setSortOrder(e.target.value)}
-          className="border p-2 rounded"
+          className="price border p-2 rounded"
         >
+          <option value="">Price</option>
           <option value="price_asc">Price: Low to High</option>
           <option value="price_desc">Price: High to Low</option>
         </select>
